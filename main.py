@@ -19,13 +19,13 @@ import time
 import sys 
 
 def loadNumpyfile(root_path):
-    X_train = np.load(root_path+'X_train.npy', allow_pickle=True)
+    X_train = np.load(root_path+'/image_numpy/X_train.npy', allow_pickle=True)
     X_train = X_train.reshape(X_train.shape[0], 64,64,1)
-    X_test = np.load(root_path+'X_test.npy', allow_pickle=True)
+    X_test = np.load(root_path+'/image_numpy/X_test.npy', allow_pickle=True)
     X_test = X_test.reshape(X_test.shape[0],64,64,1)
-    y_train = np.load(root_path+'y_train.npy', allow_pickle=True)
-    y_test = np.load(root_path+'y_test.npy', allow_pickle=True)
-    test_images = np.load(root_path+'testImages.npy', allow_pickle=True)
+    y_train = np.load(root_path+'/image_numpy/y_train.npy', allow_pickle=True)
+    y_test = np.load(root_path+'/image_numpy/y_test.npy', allow_pickle=True)
+    test_images = np.load(root_path+'/image_numpy/testImages.npy', allow_pickle=True)
 
     return X_train, X_test, y_train, y_test, test_images
 
@@ -197,7 +197,7 @@ def main():
     root_path = sys.argv[1]
     choice = sys.argv[2]
 
-    totalLabels, batchSize, totalEpochs, learningRate, dropout, key = 10, 8, 1, 0.001, 0.5, "SGD"
+    totalLabels, batchSize, totalEpochs, learningRate, dropout, key = 10, 20, 1, 0.001, 0.5, "SGD"
     start_time = time.time()
 
     weightDecay = learningRate/totalEpochs
