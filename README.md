@@ -50,7 +50,7 @@ $ python3 /working_directory/ test
 
 The model trained for 20 epochs achieves 99% accuracy. The hyper-parameters used are present on the top of the performance curves shown below. 
 
-![AccuracyEpoch](epoch_accuracy.png "curve")
+![AccuracyEpoch](epoch-accuracy.png "curve")
 
 ![Epoch-Loss Plot](epoch-loss.png) 
 
