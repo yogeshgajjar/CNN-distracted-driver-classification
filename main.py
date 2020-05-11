@@ -19,6 +19,14 @@ import time
 import sys 
 
 def loadNumpyfile(root_path):
+    '''
+    Loads the images stored as numpy array. Use 'sh model.sh' before executing this file
+
+    :returns Xtr: X_train with shape (17939 x 64 x 64 x 1)
+    :returns Xte: X_test with shape (4485 x 64 x 64 x 1)
+    :returns ytr: y_train labels with shape (17939 x 10) 
+    :returns yte: y-test labels with shape (4485 x 10) 
+    '''
     X_train = np.load(root_path+'/image_numpy/X_train.npy', allow_pickle=True)
     X_train = X_train.reshape(X_train.shape[0], 64,64,1)
     X_test = np.load(root_path+'/image_numpy/X_test.npy', allow_pickle=True)
@@ -30,6 +38,9 @@ def loadNumpyfile(root_path):
     return X_train, X_test, y_train, y_test, test_images
 
 def preProcessing(totalLabels, X_train, X_test, y_train, y_test, test_images):
+    '''
+    Normalizes the data and labels 
+    '''
     y_train = keras.utils.to_categorical(y_train, totalLabels)
     y_test = keras.utils.to_categorical(y_test, totalLabels)
     X_train = X_train.astype('float32')
@@ -129,6 +140,10 @@ def loadModel(json_file='myModel.json', h5_model='myModel.h5'):
 
 def train(model, learningRate, weightDecay, X_train, y_train, X_test, y_test, totalEpochs, batchSize):
 
+    """
+    Training begins here 
+    """
+
     optim = SGD(lr=learningRate, decay=weightDecay , momentum=0.9, nesterov=True)
     model.compile(optimizer=optim,loss='categorical_crossentropy', metrics=['accuracy'])
 
@@ -147,8 +162,6 @@ def test(final, Xte, yte, batchSize, optim):
 
     final.compile(loss='categorical_crossentropy', optimizer=optim, metrics=['accuracy'])
     score = final.evaluate(Xte, yte, verbose=0)
-    # print("%s: %.2f%%" % (final.metrics_names[1], score[1]*100))
-
     score, acc = final.evaluate(Xte, yte, batch_size=batchSize)
 
     print("******** FINAL TEST ACCURACY **********")
