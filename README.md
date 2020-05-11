@@ -44,13 +44,13 @@ $ cd /working_directory/
 $ git clone git@github.com:yogeshgajjar/CNN-distracted-driver-classification.git
 $ sh image_numpy.sh 
 $ python3 /working_directory/ test 
-
+```
 
 ### Performance Curves 
 
 The model trained for 20 epochs achieves 99% accuracy. The hyper-parameters used are present on the top of the performance curves shown below. 
 
-![Epoch-Accuracy Plot](epoch-accuracy.png)
+![AccuracyEpoch](YGNet_Keras/epoch_accuracy.png "curve")
 
 ![Epoch-Loss Plot](epoch-loss.png) 
 
